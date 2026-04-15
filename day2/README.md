@@ -1,6 +1,4 @@
-1）创建BasePawn类，Tank类，Enemy类以及对应蓝图类，添加坦克和敌人的各个UStaiticMeshComponent，调整碰撞盒形状和大小，引入StaticMesh资产；
+1）遇到了较大阻碍，可能是ue本身的问题，BP_WeaponBall蓝图类的StaticMeshComponent细节面板一直为空，并且添加ProjectileMoveComponent后，初始速度不为0，也不存在子弹与炮口Collision接触的问题，然而子弹生成后一直静止，rebuild也没有作用，之后突然恢复正常。
 
-2）创建了PlayerController的子类，创建默认映射上下文与输入动作资产，建立按键事件与动作Input函数的联系，实现上下左右的移动，惯性偏移
-
-3）明确了实现小球与tank的交互、tank获得不同小球效果的代码结构，有待实现
+2）实现了切换武器的代码，与第一天的不同，给坦克添加了TSubclassOf<ABullet> BulletClass引用对象，为子弹类设置三个子类，LaserBullet，TwinBullet，SonicBullet，再创建对应BP子类，不同子弹的运动逻辑放在蓝图里面，当触发坦克与武器球的Overlap事件，通过多态调用坦克的切换引用对象类型函数，给BulletClass赋值为武器球内部的成员变量NewBulletClass，达到生成不同子弹的效果
 
