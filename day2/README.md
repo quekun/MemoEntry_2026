@@ -2,3 +2,4 @@
 
 2）实现了切换武器的代码，与第一天的不同，给坦克添加了TSubclassOf<ABullet> BulletClass引用对象，为子弹类设置三个子类，LaserBullet，TwinBullet，SonicBullet，再创建对应BP子类，不同子弹的运动逻辑放在蓝图里面，当触发坦克与武器球的Overlap事件，通过多态调用坦克的切换引用对象类型函数，给BulletClass赋值为武器球内部的成员变量NewBulletClass，达到生成不同子弹的效果
 
+3）遇到了tank与WeaponBall接触后游戏卡死的问题，通过排查加网上搜索的方式，发现是由于destroy()函数使用了虚函数，触发了无限递归，进程被挤爆
