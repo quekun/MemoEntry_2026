@@ -1,6 +1,8 @@
-1）创建BasePawn类，Tank类，Enemy类以及对应蓝图类，添加坦克和敌人的各个UStaiticMeshComponent，调整碰撞盒形状和大小，引入StaticMesh资产；
+1）创建了HealthComponet与OnHit函数，当子弹击中Enemy时，使用ApllyDamage函数触发OnComponentHit事件，并把该事件绑定到OnHit函数中，执行减少生命值，生命值为空时，调用Destroy()销毁敌人actor
 
-2）创建了PlayerController的子类，创建默认映射上下文与输入动作资产，建立按键事件与动作Input函数的联系，实现上下左右的移动，惯性偏移
+2）在TankHeroGameMode中添加了游戏相关规则，创建TArray<AActor*> Enemies指针数组，通过UGameplayStatics::GetAllActorsOfClass函数，得到敌人数量，当敌人数量清零或者tank生命值归零时，在日志输出对应文本，并且设定了计时器，游戏开始前会打印倒计时。
 
-3）明确了实现小球与tank的交互、tank获得不同小球效果的代码结构，有待实现
+3）在tank类里面添加了开火冷却计数器，避免按下一次发射多发子弹的问题，通过SetPlayerEnabled(bool Enabled)函数，在游戏开始前拒绝输入
+
+
 
